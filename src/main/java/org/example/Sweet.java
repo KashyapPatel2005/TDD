@@ -1,13 +1,14 @@
 package org.example;
 
 public class Sweet {
-    private int id;
+    private int id; //Unique identifier for each sweet
     private String name;
     private String category;
     private double price;
     private int quantity;
 
 
+    // Creates new Sweet Object
     public Sweet(int id,String name,String category,double price,int quantity){
         this.id = id;
         this.name = name;
@@ -17,7 +18,7 @@ public class Sweet {
     }
 
 
-
+    //Getter Methods
     public int getId(){
         return id;
     }
@@ -38,6 +39,9 @@ public class Sweet {
         return quantity;
     }
 
+
+
+    //Setter methods
     public void setId(int id){
         this.id = id;;
     }
