@@ -50,7 +50,7 @@ public class SweetShopServiceTest {
 
 
     @Test
-    void testSearchByName() {
+    void SearchByNameTest() {
         service.addSweet(new Sweet(1, "Kaju Katli", "Nut", 50, 10));
         service.addSweet(new Sweet(2, "Gulab Jamun", "Milk", 10, 20));
 
@@ -60,7 +60,7 @@ public class SweetShopServiceTest {
     }
 
     @Test
-    void testSearchByPriceRange() {
+    void SearchByPriceRangeTest() {
         service.addSweet(new Sweet(1, "Gulab Jamun", "Milk", 10, 40));
         service.addSweet(new Sweet(2, "Pastry", "Cake", 25, 10));
         service.addSweet(new Sweet(3, "Chocolate", "Candy", 5, 100));
@@ -72,13 +72,34 @@ public class SweetShopServiceTest {
 
 
     @Test
-    void testSearchByCategory() {
+    void SearchByCategoryTest() {
         service.addSweet(new Sweet(1, "Kaju Katli", "Nut", 50, 10));
         service.addSweet(new Sweet(2, "Peda", "Milk", 15, 30));
 
         List<Sweet> results = service.searchByCategory("Milk");
         assertEquals(1, results.size());
         assertEquals("Peda", results.get(0).getName());
+    }
+
+    @Test
+    void PurchaseSweetInsufficientStockTest() {
+        Sweet sweet = new Sweet(1, "Barfi", "Milk", 20.0, 0);
+        service.addSweet(sweet);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            service.purchaseSweet(1);
+        });
+
+        assertEquals("Insufficient stock", exception.getMessage());
+    }
+
+    @Test
+    void RestockSweetTest() {
+        Sweet sweet = new Sweet(1, "Ladoo", "Nut", 8.0, 5);
+        service.addSweet(sweet);
+
+        service.restockSweet(1, 10);
+        assertEquals(15, service.getAllSweets().get(0).getQuantity());
     }
 
 }

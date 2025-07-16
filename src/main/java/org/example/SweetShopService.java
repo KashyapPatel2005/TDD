@@ -41,4 +41,19 @@ public class SweetShopService {
     }
 
 
+
+    public void purchaseSweet(int id) {
+        Sweet sweet = sweets.stream().filter(s -> s.getId() == id).findFirst()
+                .orElseThrow(() -> new RuntimeException("Sweet not found"));
+        if (sweet.getQuantity() <= 0) throw new RuntimeException("Insufficient stock");
+        sweet.setQuantity(sweet.getQuantity() - 1);
+    }
+
+    public void restockSweet(int id, int qty) {
+        Sweet sweet = sweets.stream().filter(s -> s.getId() == id).findFirst()
+                .orElseThrow(() -> new RuntimeException("Sweet not found"));
+        sweet.setQuantity(sweet.getQuantity() + qty);
+    }
+
+
 }
