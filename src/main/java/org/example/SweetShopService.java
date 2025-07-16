@@ -13,4 +13,12 @@ public class SweetShopService {
     public List<Sweet> getAllSweets() {
         return sweets;
     }
+
+    public void deleteSweet(int id) {
+        Sweet found = sweets.stream().filter(s -> s.getId() == id).findFirst()
+                .orElseThrow(() -> new RuntimeException("Sweet not found"));
+        sweets.remove(found);
+    }
+
+
 }

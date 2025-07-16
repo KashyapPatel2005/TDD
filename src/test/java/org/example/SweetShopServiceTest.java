@@ -29,4 +29,23 @@ public class SweetShopServiceTest {
         assertEquals("Kaju Katli", result.get(0).getName());
     }
 
+
+    @Test
+    void ViewAllSweetsTest() {
+        service.addSweet(new Sweet(1, "Gulab Jamun", "Milk-Based", 10.0, 30));
+        service.addSweet(new Sweet(2, "Candy", "Candy", 5.0, 100));
+
+        List<Sweet> sweets = service.getAllSweets();
+        assertEquals(2, sweets.size());
+    }
+
+    @Test
+    void DeleteSweetByIdTest() {
+        Sweet sweet = new Sweet(1, "Rasgulla", "Milk-Based", 15.0, 50);
+        service.addSweet(sweet);
+        service.deleteSweet(1);
+
+        assertTrue(service.getAllSweets().isEmpty());
+    }
+
 }
