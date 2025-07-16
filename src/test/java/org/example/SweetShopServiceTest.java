@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,12 +19,14 @@ public class SweetShopServiceTest {
     }
 
     @Test
-    void AddSweetTest(){
-        Sweet sweet = new Sweet(1001,"kaju katli","Nut-based",50.0,20);
+    void AddSweetTest() {
+        SweetShopService service = new SweetShopService();
+        Sweet sweet = new Sweet(1001, "Kaju Katli", "Nut-Based", 50, 10);
         service.addSweet(sweet);
 
-        List<Sweet> sweets = service.getAllSweets();
-        assertEquals(1, sweets.size());
-        assertEquals("Kaju Katli", sweets.get(0).getName());
+        List<Sweet> result = service.getAllSweets();
+        assertEquals(1, result.size());
+        assertEquals("Kaju Katli", result.get(0).getName());
     }
+
 }
