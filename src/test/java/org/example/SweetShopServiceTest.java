@@ -48,4 +48,37 @@ public class SweetShopServiceTest {
         assertTrue(service.getAllSweets().isEmpty());
     }
 
+
+    @Test
+    void testSearchByName() {
+        service.addSweet(new Sweet(1, "Kaju Katli", "Nut", 50, 10));
+        service.addSweet(new Sweet(2, "Gulab Jamun", "Milk", 10, 20));
+
+        List<Sweet> results = service.searchByName("Kaju");
+        assertEquals(1, results.size());
+        assertEquals("Kaju Katli", results.get(0).getName());
+    }
+
+    @Test
+    void testSearchByPriceRange() {
+        service.addSweet(new Sweet(1, "Gulab Jamun", "Milk", 10, 40));
+        service.addSweet(new Sweet(2, "Pastry", "Cake", 25, 10));
+        service.addSweet(new Sweet(3, "Chocolate", "Candy", 5, 100));
+
+        List<Sweet> results = service.searchByPriceRange(6, 20);
+        assertEquals(1, results.size());
+        assertEquals("Gulab Jamun", results.get(0).getName());
+    }
+
+
+    @Test
+    void testSearchByCategory() {
+        service.addSweet(new Sweet(1, "Kaju Katli", "Nut", 50, 10));
+        service.addSweet(new Sweet(2, "Peda", "Milk", 15, 30));
+
+        List<Sweet> results = service.searchByCategory("Milk");
+        assertEquals(1, results.size());
+        assertEquals("Peda", results.get(0).getName());
+    }
+
 }
