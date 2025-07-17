@@ -4,8 +4,12 @@ import axios from 'axios';
 import UserActions from './user/UserActions';
 import AdminActions from './admin/AdminActions';
 
-function SweetList({ role, sweets, refresh }) {
-  
+function SweetList({ role, sweets, refresh, searchTerm }) {
+  // Filter sweets based on search term
+  const filteredSweets = sweets.filter(s =>
+    s.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const deleteSweet = (id) => {
     axios.delete(`http://localhost:8080/api/sweets/${id}`)
       .then(() => refresh());
@@ -26,11 +30,11 @@ function SweetList({ role, sweets, refresh }) {
   return (
     <div>
       <h2>Sweet Inventory</h2>
-      {sweets.length === 0 ? (
-        <p>No sweets available.</p>
+      {filteredSweets.length === 0 ? (
+        <p>No sweets found.</p>
       ) : (
         <ul>
-          {sweets.map(sweet => (
+          {filteredSweets.map(sweet => (
             <li key={sweet.id}>
               <b>{sweet.name}</b> ({sweet.category}) - ₹{sweet.price} | Stock: {sweet.quantity}
               
@@ -50,3 +54,5 @@ function SweetList({ role, sweets, refresh }) {
 }
 
 export default SweetList;
+
+

@@ -8,6 +8,8 @@ import './App.css';
 function App() {
   const [role, setRole] = useState('user');
   const [sweets, setSweets] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
 
   const fetchSweets = () => {
     axios.get('http://localhost:8080/api/sweets')
@@ -31,7 +33,24 @@ function App() {
       </div>
 
       {role === 'admin' && <AddSweetForm onAdd={fetchSweets} />}
-      <SweetList role={role} sweets={sweets} refresh={fetchSweets} />
+
+      <div style={{ marginBottom: '1rem' }}>
+        <input
+          type="text"
+          placeholder="Search sweets by name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            padding: '8px',
+            width: '100%',
+            borderRadius: '6px',
+            border: '1px solid #ccc',
+            fontSize: '14px'
+          }}
+        />
+      </div>
+
+      <SweetList role={role} sweets={sweets} refresh={fetchSweets}  searchTerm={searchTerm} />
     </div>
   );
 }
