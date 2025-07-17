@@ -14,7 +14,11 @@ A simple, test-driven Java application to manage sweets inventory using JUnit 5.
 - Purchase sweets (decrease stock)
 - Restock sweets (increase stock)
 
+### Running Tests
 
+- mvn test
+
+<img width="1893" height="826" alt="Image" src="https://github.com/user-attachments/assets/c627d4aa-2e67-4aed-b902-40a2190163ab" />
 
 
 ---
@@ -64,3 +68,9 @@ Frontend:
 - React.js
 - CSS (custom UI)
 - Axios (or fetch) for API calls
+
+
+### Frontend Demo 
+
+<img width="1895" height="822" alt="Image" src="https://github.com/user-attachments/assets/a05fd7b9-e97b-4841-a8aa-d787889146fc" />
+<img width="1918" height="828" alt="Image" src="https://github.com/user-attachments/assets/c66480eb-661b-4d4a-b3e3-38b18cfa7ee6" />
